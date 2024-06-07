@@ -1,0 +1,48 @@
+-- Create database if not exists
+CREATE DATABASE IF NOT EXISTS car_dealership;
+
+-- Use the created database
+USE car_dealership;
+
+-- Create cars table
+CREATE TABLE IF NOT EXISTS cars (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    make VARCHAR(255) NOT NULL,
+    model VARCHAR(255) NOT NULL,
+    year INT NOT NULL,
+    price DECIMAL(10, 2) NOT NULL,
+    car_number VARCHAR(20) NOT NULL,
+    registration_date DATE NOT NULL,
+    registration_number VARCHAR(20) NOT NULL,
+    power VARCHAR(50) NOT NULL,
+    torque VARCHAR(50) NOT NULL,
+    mileage VARCHAR(50) NOT NULL,
+    total_kilometers VARCHAR(50) NOT NULL,
+    images TEXT NOT NULL
+);
+
+-- Use the created database
+USE car_dealership;
+
+-- Create users table
+CREATE TABLE IF NOT EXISTS users (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    username VARCHAR(255) NOT NULL,
+    password VARCHAR(255) NOT NULL,
+    email VARCHAR(255) NOT NULL UNIQUE
+);
+
+
+-- Use the created database
+USE car_dealership;
+
+-- Create messages table
+CREATE TABLE IF NOT EXISTS messages (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    user_name VARCHAR(255) NOT NULL,
+    user_email VARCHAR(255) NOT NULL,
+    user_phone VARCHAR(20) NOT NULL,
+    message_content TEXT NOT NULL
+);
+
+
