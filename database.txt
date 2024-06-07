@@ -1,48 +1,81 @@
--- Create database if not exists
-CREATE DATABASE IF NOT EXISTS car_dealership;
+===Database car_dealership
 
--- Use the created database
-USE car_dealership;
+== Table structure for table bookings
 
--- Create cars table
-CREATE TABLE IF NOT EXISTS cars (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    make VARCHAR(255) NOT NULL,
-    model VARCHAR(255) NOT NULL,
-    year INT NOT NULL,
-    price DECIMAL(10, 2) NOT NULL,
-    car_number VARCHAR(20) NOT NULL,
-    registration_date DATE NOT NULL,
-    registration_number VARCHAR(20) NOT NULL,
-    power VARCHAR(50) NOT NULL,
-    torque VARCHAR(50) NOT NULL,
-    mileage VARCHAR(50) NOT NULL,
-    total_kilometers VARCHAR(50) NOT NULL,
-    images TEXT NOT NULL
-);
+|------
+|Column|Type|Null|Default
+|------
+|//**id**//|int(11)|No|
+|car_name|varchar(255)|No|
+|user_name|varchar(255)|No|
+|user_phone|varchar(20)|No|
+|purchase_period|varchar(255)|No|
+|status|enum('Pending', 'Done')|No|Pending
+|created_at|timestamp|No|current_timestamp()
+== Dumping data for table bookings
 
--- Use the created database
-USE car_dealership;
+|1|Tata Intra V50|asdas|sdasdasd|Within 10 Days|Pending|2024-06-03 01:11:35
+|4|Tata Intra V50|asdas|sdasdasd|Within This Year|Pending|2024-06-03 01:26:30
+|5|Tata Intra V50|asdas|sdasdasd|Within This Year|Pending|2024-06-03 01:28:12
+|6|Tata Intra V50|asdas|dasdad|Within This Year|Pending|2024-06-03 01:28:26
+|12|Maruti Suzuki Super Carry|sefrs|fesfsf|Within 10 Days|Pending|2024-06-07 01:22:53
+|13|Maruti Suzuki Super Carry|sefrs|fesfsf|Within 10 Days|Pending|2024-06-07 01:23:48
+|14|Maruti Suzuki Super Carry|sefrs|fesfsf|Within 10 Days|Pending|2024-06-07 01:26:49
+|15|Maruti Suzuki Super Carry|ret|7894561235|Within a Month|Pending|2024-06-07 01:41:19
+== Table structure for table cars
 
--- Create users table
-CREATE TABLE IF NOT EXISTS users (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    username VARCHAR(255) NOT NULL,
-    password VARCHAR(255) NOT NULL,
-    email VARCHAR(255) NOT NULL UNIQUE
-);
+|------
+|Column|Type|Null|Default
+|------
+|//**id**//|int(11)|No|
+|name|varchar(255)|No|
+|brand|varchar(255)|No|
+|showroom_price|decimal(10,2)|No|
+|onroadprice|decimal(10,2)|No|
+|max_power|int(11)|No|
+|displacement|int(11)|No|
+|fuel_tank|int(11)|No|
+|engine|varchar(255)|No|
+|fuel_type|varchar(255)|No|
+|emission_norms|varchar(255)|No|
+|max_torque|int(11)|No|
+|mileage|decimal(5,2)|No|
+|gradeability|int(11)|No|
+|max_speed|int(11)|No|
+|engine_cylinders|int(11)|No|
+|battery_capacity|int(11)|No|
+|images|text|No|
+== Dumping data for table cars
 
+|44|Maruti Suzuki Super Carry|Maruti Suzuki|516000.00|630000.00|213|2121|231|Multi Point Fuel Injection G12B|Petrol|BS-VI|23|32.00|32|80|2|40|../view/uploads/665a19b0dd252.jpeg
+|52|Tata Intra V30|Tata|730000.00|762000.00|69|1496|35|DI engine|Diesel|BS-VI|140|14.00|37|80|4|55|../view/uploads/665c818f71535.jpeg
+|53|Tata Intra V20|Tata|711000.00|850000.00|53|1199|80|DI engine|CNG+Petrol|BS-VI|96|17.00|28|80|3|70|../view/uploads/665c8368b7fa9.png
+|55|Tata Intra V50|Tata|867000.00|920000.00|80|1496|35|DI engine|Diesel|BS-VI|220|22.00|35|80|4|70|../view/uploads/665c858d5e0ea.jpeg
+|56|Mahindra Bolero PikUp ExtraLong|Mahindra|885000.00|912000.00|75|2523|57|m2DiCR 2.5L TB|Diesel|BS-VI|200|14.00|41|80|4|380|../view/uploads/665c8ef591312.jpeg
+== Table structure for table contact_form
 
--- Use the created database
-USE car_dealership;
+|------
+|Column|Type|Null|Default
+|------
+|//**id**//|int(11)|No|
+|name|varchar(255)|No|
+|email|varchar(255)|No|
+|message|text|No|
+|created_at|timestamp|No|current_timestamp()
+== Dumping data for table contact_form
 
--- Create messages table
-CREATE TABLE IF NOT EXISTS messages (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    user_name VARCHAR(255) NOT NULL,
-    user_email VARCHAR(255) NOT NULL,
-    user_phone VARCHAR(20) NOT NULL,
-    message_content TEXT NOT NULL
-);
+|1|sda|asd@gmail.com|asdasd|2024-06-07 02:23:34
+|2|sda|asd@gmail.com|asdasd|2024-06-07 02:26:50
+|3|Amar|amar@gmail.com|awsdawd|2024-06-07 02:35:47
+== Table structure for table users
 
+|------
+|Column|Type|Null|Default
+|------
+|//**id**//|int(11)|No|
+|username|varchar(255)|No|
+|password|varchar(255)|No|
+|**email**|varchar(255)|No|
+== Dumping data for table users
 
+|1|AMAR|$2y$10$8ZDq9ZyFzf3F9H6ExSDHAOTVqP.lQl99GvtAvXhHOikG8DwaIVwqC|amar@gmail.com
