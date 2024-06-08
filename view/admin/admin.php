@@ -30,7 +30,7 @@ if (!isset($_SESSION['admin'])) {
         <button onclick="window.location.href='view_bookings.php'">View bookings</button>
     </div>
     <div id="users">
-        <button onclick="window.location.href='user_messages.php'">View User Messages</button>
+        <button onclick="window.location.href='user_message.php'">View User Messages</button>
     </div>
     <div id="logout">
     <button onclick="window.location.href='logout.php'">Logout</button>

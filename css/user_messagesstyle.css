@@ -1,0 +1,91 @@
+/* General styles */
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f4f4f4;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+/* Container and box styling */
+.container {
+  width: 80%;
+  max-width: 800px;
+  margin: 20px auto;
+  padding: 20px;
+  background-color: #fff;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+}
+
+.box {
+  text-align: center;
+}
+
+/* Heading style */
+h1 {
+  font-size: 24px;
+  color: #333;
+  margin-bottom: 20px;
+}
+
+/* Message style */
+.message {
+  padding: 10px;
+  margin: 10px 0;
+  border: 1px solid #ccc;
+  background-color: #e0ffe0;
+  color: #333;
+  border-radius: 4px;
+}
+
+/* List and list item styles */
+ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+li {
+  padding: 15px;
+  margin: 10px 0;
+  background-color: #f9f9f9;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+li:hover {
+  background-color: #f1f1f1;
+}
+
+/* Delete link style */
+.delete-link {
+  text-decoration: none;
+  color: #e74c3c;
+  font-weight: bold;
+}
+
+.delete-link:hover {
+  text-decoration: underline;
+}
+
+/* Back to Admin Dashboard button */
+.button {
+  display: inline-block;
+  padding: 10px 20px;
+  margin-top: 20px;
+  text-decoration: none;
+  color: #fff;
+  background-color: #3498db;
+  border-radius: 4px;
+  transition: background-color 0.3s ease;
+}
+
+.button:hover {
+  background-color: #2980b9;
+}

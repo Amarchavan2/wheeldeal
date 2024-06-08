@@ -1,5 +1,5 @@
 <?php
-include 'config.php';
+include dirname(__DIR__, 2) . '/config.php';
 
 session_start();
 if (!isset($_SESSION['admin'])) {
@@ -13,8 +13,11 @@ $message = "";
 // Handle message deletion
 if (isset($_GET['delete_message']) && is_numeric($_GET['delete_message'])) {
     $message_id = $_GET['delete_message'];
-    $sqlDeleteMessage = "DELETE FROM messages WHERE id = $message_id";
-    $resultDeleteMessage = $conn->query($sqlDeleteMessage);
+
+    // Prepare statement to prevent SQL injection
+    $stmt = $conn->prepare("DELETE FROM contact_form WHERE id = ?");
+    $stmt->bind_param("i", $message_id);
+    $resultDeleteMessage = $stmt->execute();
 
     if ($resultDeleteMessage === false) {
         // Check for query execution error
@@ -22,10 +25,11 @@ if (isset($_GET['delete_message']) && is_numeric($_GET['delete_message'])) {
     } else {
         $message = "Message deleted successfully!";
     }
+    $stmt->close();
 }
 
 // Fetch all messages
-$sqlMessages = "SELECT * FROM messages";
+$sqlMessages = "SELECT * FROM contact_form";
 $resultMessages = $conn->query($sqlMessages);
 ?>
 
@@ -35,7 +39,7 @@ $resultMessages = $conn->query($sqlMessages);
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>User Messages</title>
-    <link rel="stylesheet" href="user_messagesstyle.css">
+    <link rel="stylesheet" href="../../css/user_messagesstyle.css">
 </head>
 <body>
     <div class="container">
@@ -57,8 +61,13 @@ $resultMessages = $conn->query($sqlMessages);
                 } else {
                     // Check if there are any messages
                     if ($resultMessages->num_rows > 0) {
-                        while ($message = $resultMessages->fetch_assoc()) {
-                            echo "<li>User: {$message['user_name']} ({$message['user_email']}, {$message['user_phone']}) - {$message['message_content']} <a href='user_messages.php?delete_message={$message['id']}' class='delete-link'>Delete Message</a></li>";
+                        while ($row = $resultMessages->fetch_assoc()) {
+                            $name = isset($row['name']) ? $row['name'] : 'N/A';
+                            $email = isset($row['email']) ? $row['email'] : 'N/A';
+                            $message_content = isset($row['message']) ? $row['message'] : 'N/A';
+                            $created_at = isset($row['created_at']) ? $row['created_at'] : 'N/A';
+                            
+                            echo "<li>User: $name ($email) - $message_content <a href='user_messages.php?delete_message={$row['id']}' class='delete-link' onclick='return confirm(\"Are you sure you want to delete this message?\")'>Delete Message</a></li>";
                         }
                     } else {
                         echo "<p>No messages available.</p>";
@@ -71,8 +80,6 @@ $resultMessages = $conn->query($sqlMessages);
             <a href="admin.php" class="button">Back to Admin Dashboard</a>
         </div>
     </div>
-
-    <!-- ... (other HTML code) -->
 
     <script>
         // Function to hide the message after a delay
