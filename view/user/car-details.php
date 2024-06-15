@@ -302,7 +302,7 @@ if (isset($_GET['id'])) {
             <script>
                 function makeCall() {
                     // Replace with the actual phone number
-                    window.location.href = 'tel:+911234567890';
+                    window.location.href = 'tel:+919594652780';
                 }
             </script>
         </body>
